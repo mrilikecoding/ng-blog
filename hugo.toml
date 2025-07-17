@@ -13,5 +13,28 @@ palette = 'base16-dark'
 title = "nate.green"
 description = "terminal-inspired blog"
 
+[markup]
+[markup.goldmark]
 [markup.goldmark.renderer]
 unsafe = true
+hardWraps = false
+xhtml = false
+
+[markup.goldmark.parser]
+autoHeadingID = true
+autoHeadingIDType = "github"
+
+[markup.goldmark.extensions]
+definitionList = true
+footnote = true
+linkify = true
+strikethrough = true
+table = true
+taskList = true
+typographer = true
+
+[markup.highlight]
+style = "github"
+lineNos = false
+lineNumbersInTable = false
+noClasses = false
