@@ -1,6 +1,6 @@
 baseURL = 'https://mrilikecoding.github.io/ng-blog/'
 languageCode = 'en-us'
-title = 'nate.green'
+title = 'nate.green - blog'
 theme = 'risotto'
 
 [params]

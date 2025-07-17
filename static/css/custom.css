@@ -80,15 +80,16 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--base05) !important;
 }
 
-/* Remove or style sidebar */
+/* Remove sidebar completely */
 .page__aside {
-  background: rgba(31, 41, 55, 0.95) !important;
-  border-left: 1px solid var(--base02) !important;
-  backdrop-filter: blur(10px) !important;
+  display: none !important;
 }
 
-.aside__about {
-  color: var(--base04) !important;
+/* Make main content full width without sidebar */
+.page__body {
+  flex: 1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 /* Footer */
@@ -126,13 +127,7 @@ ul li {
   margin-bottom: 0.5rem !important;
 }
 
-/* Terminal prompt style for post list */
-.recent-posts ul li::before {
-  content: "$ " !important;
-  color: var(--base0B) !important;
-  font-weight: bold !important;
-}
-
+/* Clean post list without terminal prompts */
 .recent-posts ul li {
   list-style: none !important;
   margin-left: 0 !important;
@@ -143,15 +138,10 @@ ul li {
   padding-left: 0 !important;
 }
 
-/* Make the "All posts" link look like a terminal command */
+/* Style the "All posts" link */
 .page__body a[href*="posts"] {
   color: var(--base0B) !important;
   font-weight: bold !important;
-}
-
-.page__body a[href*="posts"]:before {
-  content: "$ " !important;
-  color: var(--base0B) !important;
 }
 
 /* Code blocks */
