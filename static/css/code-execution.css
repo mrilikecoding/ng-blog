@@ -102,6 +102,7 @@
   max-width: 100% !important;
   overflow-x: auto !important;
   box-sizing: border-box !important;
+  margin: 1rem 0 !important;
 }
 
 .highlight pre {
@@ -111,14 +112,37 @@
   box-sizing: border-box !important;
   margin: 0 !important;
   padding: 1rem !important;
+  white-space: pre !important;
 }
 
-/* Ensure code blocks don't exceed container */
+/* Ensure all code blocks stay within content bounds */
 .content__body .highlight,
 .content__body pre,
 .content__body code {
   max-width: 100% !important;
   overflow-x: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Fix the page body to prevent overflow */
+.page__body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure the main page container doesn't overflow */
+.page {
+  max-width: 1200px !important;
+  margin: 2rem auto !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+}
+
+/* Fix any potential width issues in content area */
+.content__body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
   box-sizing: border-box !important;
 }
 

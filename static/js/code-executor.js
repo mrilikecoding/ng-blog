@@ -12,17 +12,30 @@ class CodeExecutor {
 
     async initializePyodide() {
         try {
-            // Load Pyodide for Python execution
+            console.log('Starting Pyodide initialization...');
+            
+            // Use a more reliable CDN and version
             const pyodideScript = document.createElement('script');
-            pyodideScript.src = 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js';
+            pyodideScript.src = 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js';
+            pyodideScript.defer = true;
             document.head.appendChild(pyodideScript);
             
             pyodideScript.onload = async () => {
                 try {
                     console.log('Pyodide script loaded, initializing...');
+                    
+                    // Wait a bit for the script to fully load
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    
+                    if (typeof loadPyodide === 'undefined') {
+                        throw new Error('loadPyodide function not available');
+                    }
+                    
                     this.pyodide = await loadPyodide({
-                        indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/'
+                        indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/',
+                        fullStdLib: false
                     });
+                    
                     this.pyodideReady = true;
                     console.log('Pyodide initialized successfully');
                     this.updatePythonButtons();
@@ -32,10 +45,19 @@ class CodeExecutor {
                 }
             };
             
-            pyodideScript.onerror = () => {
-                console.error('Failed to load Pyodide script');
+            pyodideScript.onerror = (error) => {
+                console.error('Failed to load Pyodide script:', error);
                 this.handlePyodideError();
             };
+            
+            // Timeout after 30 seconds
+            setTimeout(() => {
+                if (!this.pyodideReady) {
+                    console.error('Pyodide loading timed out');
+                    this.handlePyodideError();
+                }
+            }, 30000);
+            
         } catch (error) {
             console.error('Failed to setup Pyodide:', error);
             this.handlePyodideError();
@@ -160,9 +182,13 @@ sys.stdout = sys.__stdout__
         }
     }
 
-    createExecutableCodeBlock(codeBlock) {
-        const language = codeBlock.getAttribute('data-lang') || 'javascript';
-        const code = codeBlock.textContent;
+    createExecutableCodeBlock(codeElement) {
+        const language = codeElement.getAttribute('data-lang') || 'javascript';
+        const code = codeElement.textContent;
+        
+        // Find the parent highlight div
+        const highlightDiv = codeElement.closest('.highlight');
+        if (!highlightDiv) return;
         
         // Create container
         const container = document.createElement('div');
@@ -201,13 +227,13 @@ sys.stdout = sys.__stdout__
             runButton.textContent = `▶ Run ${language}`;
         });
         
-        // Insert the interactive elements
-        codeBlock.parentNode.insertBefore(container, codeBlock.nextSibling);
+        // Insert the interactive elements after the highlight div
+        highlightDiv.parentNode.insertBefore(container, highlightDiv.nextSibling);
         container.appendChild(header);
         container.appendChild(output);
         
-        // Mark the code block as executable
-        codeBlock.setAttribute('data-executable', 'true');
+        // Mark the highlight div as processed
+        highlightDiv.setAttribute('data-executable', 'true');
     }
 }
 
