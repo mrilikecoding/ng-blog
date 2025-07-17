@@ -63,6 +63,22 @@ body {
   color: var(--base0B) !important;
 }
 
+/* Header subtitle styling */
+.page__subtitle {
+  display: block !important;
+  font-size: 0.9rem !important;
+  font-weight: normal !important;
+  color: var(--base04) !important;
+  margin-top: 0.2rem !important;
+  font-family: 'Courier New', monospace !important;
+}
+
+.page__logo {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
 /* Ensure any pseudo-elements in header also match color */
 .page__logo::before,
 .page__logo::after,
@@ -267,6 +283,75 @@ ul li {
 .page__body a[href*="posts"] {
   color: var(--base0B) !important;
   font-weight: bold !important;
+}
+
+/* Homepage post list styling */
+.posts-list {
+  margin-top: 2rem;
+}
+
+.post-summary {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--base02);
+}
+
+.post-summary:last-child {
+  border-bottom: none;
+}
+
+.post-header {
+  margin-bottom: 1rem;
+}
+
+.post-title {
+  margin: 0 0 0.5rem 0 !important;
+  font-size: 1.5rem !important;
+}
+
+.post-title a {
+  color: var(--base0B) !important;
+  text-decoration: none !important;
+  font-family: 'Courier New', monospace !important;
+  font-weight: bold !important;
+}
+
+.post-title a:hover {
+  opacity: 0.8 !important;
+  text-decoration: underline !important;
+}
+
+.post-meta {
+  color: var(--base04) !important;
+  font-size: 0.9rem !important;
+  font-family: 'Courier New', monospace !important;
+}
+
+.post-meta time {
+  color: var(--base04) !important;
+}
+
+.post-content {
+  margin-top: 1rem;
+}
+
+.post-content p {
+  color: var(--base05) !important;
+  font-family: 'Courier New', monospace !important;
+  line-height: 1.6 !important;
+  margin-bottom: 1rem !important;
+}
+
+.read-more {
+  color: var(--base0D) !important;
+  font-family: 'Courier New', monospace !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+}
+
+.read-more:hover {
+  text-decoration: underline !important;
+  opacity: 0.8 !important;
 }
 
 /* Code blocks */

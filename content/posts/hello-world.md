@@ -2,6 +2,7 @@
 date: '2025-07-17T10:19:42-07:00'
 draft: false
 title: 'Hello World'
+summary: 'Welcome to my new blog! This post demonstrates interactive code execution with both JavaScript and Python examples you can run directly in the browser.'
 ---
 
 Welcome to my new blog! This is built with Hugo and the risotto theme.
