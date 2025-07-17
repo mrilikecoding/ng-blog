@@ -40,6 +40,9 @@ body {
   font-weight: bold !important;
   font-size: 1.3rem !important;
   text-decoration: none !important;
+  background: transparent !important;
+  opacity: 1 !important;
+  padding: 0 !important;
 }
 
 /* Ensure title is visible against header background */
