@@ -55,9 +55,42 @@ body {
   margin: 0 !important;
 }
 
-/* Make sure all characters in the title are the same color */
-.page__logo-inner,
-.page__logo-inner *,
+/* Header title styling with main site link */
+.page__logo-inner {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 0 !important;
+}
+
+.main-site-link {
+  color: var(--base0B) !important;
+  text-decoration: none !important;
+  font-weight: bold !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.main-site-link:hover {
+  opacity: 0.8 !important;
+  text-decoration: underline !important;
+}
+
+.blog-title {
+  color: var(--base0B) !important;
+  font-weight: bold !important;
+}
+
+.blog-title a {
+  color: var(--base0B) !important;
+  text-decoration: none !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.blog-title a:hover {
+  opacity: 0.8 !important;
+  text-decoration: underline !important;
+}
+
+/* Ensure compatibility with existing styles */
 .page__nav h1,
 .page__nav h1 a {
   color: var(--base0B) !important;
