@@ -93,6 +93,70 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--base05) !important;
 }
 
+/* Markdown elements styling with monospace font */
+.content__body h1, .content__body h2, .content__body h3, 
+.content__body h4, .content__body h5, .content__body h6 {
+  font-family: 'Courier New', monospace !important;
+  color: var(--base0B) !important;
+  font-weight: bold !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.content__body h1 { font-size: 1.8rem !important; }
+.content__body h2 { font-size: 1.5rem !important; }
+.content__body h3 { font-size: 1.3rem !important; }
+.content__body h4 { font-size: 1.1rem !important; }
+
+.content__body strong, .content__body b {
+  font-family: 'Courier New', monospace !important;
+  font-weight: bold !important;
+  color: var(--base05) !important;
+}
+
+.content__body em, .content__body i {
+  font-family: 'Courier New', monospace !important;
+  font-style: italic !important;
+  color: var(--base05) !important;
+}
+
+.content__body a {
+  font-family: 'Courier New', monospace !important;
+  color: var(--base0D) !important;
+  text-decoration: underline !important;
+}
+
+.content__body a:hover {
+  opacity: 0.8 !important;
+}
+
+.content__body ul, .content__body ol {
+  font-family: 'Courier New', monospace !important;
+  color: var(--base05) !important;
+  margin-left: 1.5rem !important;
+}
+
+.content__body li {
+  font-family: 'Courier New', monospace !important;
+  color: var(--base05) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.content__body blockquote {
+  font-family: 'Courier New', monospace !important;
+  color: var(--base04) !important;
+  border-left: 3px solid var(--base0B) !important;
+  padding-left: 1rem !important;
+  margin-left: 0 !important;
+  font-style: italic !important;
+}
+
+.content__body p {
+  font-family: 'Courier New', monospace !important;
+  color: var(--base05) !important;
+  margin-bottom: 1rem !important;
+}
+
 /* Remove sidebar completely - handled in baseof.html layout */
 .page__aside {
   display: none !important;
