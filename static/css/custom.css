@@ -55,6 +55,24 @@ body {
   margin: 0 !important;
 }
 
+/* Make sure all characters in the title are the same color */
+.page__logo-inner,
+.page__logo-inner *,
+.page__nav h1,
+.page__nav h1 a {
+  color: var(--base0B) !important;
+}
+
+/* Ensure any pseudo-elements in header also match color */
+.page__logo::before,
+.page__logo::after,
+.page__logo-inner::before,
+.page__logo-inner::after,
+.page__nav::before,
+.page__nav::after {
+  color: var(--base0B) !important;
+}
+
 .page__logo-inner:hover {
   opacity: 0.8 !important;
 }
