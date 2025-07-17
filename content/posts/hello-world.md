@@ -20,12 +20,42 @@ Some things I'm working on:
 - Musical endeavors
 - Theater work
 
-### Code Example
+### Interactive Code Examples
 
+Try running these code examples! Click the "Run" button to execute them.
+
+**JavaScript Example:**
 ```javascript
-console.log("Hello, world!");
+console.log("Hello from JavaScript!");
+
+// Try some calculations
+const numbers = [1, 2, 3, 4, 5];
+const sum = numbers.reduce((a, b) => a + b, 0);
+console.log(`Sum of ${numbers.join(', ')} = ${sum}`);
+
+// Return a value
+Math.PI * 2;
+```
+
+**Python Example:**
+```python
+print("Hello from Python!")
+
+# Try some data manipulation
+import math
+
+numbers = [1, 2, 3, 4, 5]
+total = sum(numbers)
+print(f"Sum of {numbers} = {total}")
+
+# Calculate something interesting
+result = math.sqrt(16) + math.pi
+print(f"√16 + π = {result:.3f}")
+
+# Return the result
+result
 ```
 
 > This is a blockquote to test quote styling.
 
-All rendered in beautiful monospace font!
+All rendered in beautiful monospace font with interactive execution!
