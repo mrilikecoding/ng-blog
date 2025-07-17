@@ -42,6 +42,16 @@ body {
   text-decoration: none !important;
 }
 
+/* Ensure title is visible against header background */
+.page__logo {
+  color: var(--base0B) !important;
+}
+
+.page__logo h1 {
+  color: var(--base0B) !important;
+  margin: 0 !important;
+}
+
 .page__logo-inner:hover {
   opacity: 0.8 !important;
 }
@@ -80,7 +90,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--base05) !important;
 }
 
-/* Remove sidebar completely */
+/* Remove sidebar completely - handled in baseof.html layout */
 .page__aside {
   display: none !important;
 }
@@ -90,6 +100,12 @@ h1, h2, h3, h4, h5, h6 {
   flex: 1 !important;
   width: 100% !important;
   max-width: 100% !important;
+}
+
+/* Update page layout for no sidebar */
+.page {
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 /* Footer */
