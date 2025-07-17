@@ -1,0 +1,175 @@
+/* Custom terminal-inspired theme for nate.green blog */
+:root {
+  /* Terminal color scheme matching nate.green */
+  --base00: #111827; /* dark background */
+  --base01: #1f2937; /* slightly lighter background */
+  --base02: #374151; /* selection background */
+  --base03: #6b7280; /* comments, invisibles */
+  --base04: #9ca3af; /* dark foreground */
+  --base05: #f9fafb; /* default foreground */
+  --base06: #f3f4f6; /* light foreground */
+  --base07: #ffffff; /* light background */
+  --base08: #ef4444; /* red */
+  --base09: #f97316; /* orange */
+  --base0A: #f59e0b; /* yellow */
+  --base0B: #10b981; /* green - terminal command color */
+  --base0C: #06b6d4; /* cyan */
+  --base0D: #3b82f6; /* blue */
+  --base0E: #8b5cf6; /* purple */
+  --base0F: #a3a3a3; /* brown */
+}
+
+/* Terminal-inspired typography */
+body {
+  font-family: 'Courier New', monospace !important;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
+  background-attachment: fixed !important;
+  color: var(--base05) !important;
+  line-height: 1.6;
+}
+
+/* Header styling */
+.page__header {
+  background: rgba(31, 41, 55, 0.95) !important;
+  border-bottom: 1px solid var(--base02) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.page__logo-inner {
+  color: var(--base0B) !important;
+  font-weight: bold !important;
+  font-size: 1.3rem !important;
+  text-decoration: none !important;
+}
+
+.page__logo-inner:hover {
+  opacity: 0.8 !important;
+}
+
+/* Main content area */
+.page__body {
+  background: rgba(17, 24, 39, 0.95) !important;
+  color: var(--base05) !important;
+  padding: 2rem !important;
+  margin: 0 !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Links styling */
+a {
+  color: var(--base0D) !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  opacity: 0.8 !important;
+  text-decoration: underline !important;
+}
+
+/* Post titles and headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--base0B) !important;
+  font-family: 'Courier New', monospace !important;
+  font-weight: bold !important;
+}
+
+/* Post content */
+.content__body {
+  font-family: 'Courier New', monospace !important;
+  line-height: 1.8 !important;
+  color: var(--base05) !important;
+}
+
+/* Remove or style sidebar */
+.page__aside {
+  background: rgba(31, 41, 55, 0.95) !important;
+  border-left: 1px solid var(--base02) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.aside__about {
+  color: var(--base04) !important;
+}
+
+/* Footer */
+.page__footer {
+  background: rgba(31, 41, 55, 0.95) !important;
+  border-top: 1px solid var(--base02) !important;
+  color: var(--base04) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.page__footer a {
+  color: var(--base0D) !important;
+}
+
+/* Terminal-style page container */
+.page {
+  max-width: 1200px !important;
+  margin: 2rem auto !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Post list styling */
+ul li {
+  margin-bottom: 0.8rem !important;
+  color: var(--base05) !important;
+}
+
+/* Command-style post links */
+.console-line {
+  font-family: 'Courier New', monospace !important;
+  color: var(--base05) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Terminal prompt style for post list */
+.recent-posts ul li::before {
+  content: "$ " !important;
+  color: var(--base0B) !important;
+  font-weight: bold !important;
+}
+
+.recent-posts ul li {
+  list-style: none !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.recent-posts ul {
+  padding-left: 0 !important;
+}
+
+/* Make the "All posts" link look like a terminal command */
+.page__body a[href*="posts"] {
+  color: var(--base0B) !important;
+  font-weight: bold !important;
+}
+
+.page__body a[href*="posts"]:before {
+  content: "$ " !important;
+  color: var(--base0B) !important;
+}
+
+/* Code blocks */
+pre, code {
+  background: var(--base01) !important;
+  color: var(--base0B) !important;
+  border: 1px solid var(--base02) !important;
+  font-family: 'Courier New', monospace !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .page {
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+  
+  .page__body {
+    padding: 1rem !important;
+  }
+}

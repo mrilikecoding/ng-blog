@@ -1,12 +1,14 @@
 {{ define "main" }}
     {{ .Content }}
     
-    <h3>Recent Posts</h3>
-    <ul>
-        {{ range first 5 (where .Site.RegularPages "Type" "posts") }}
-            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> - {{ .Date.Format "2006-01-02" }}</li>
-        {{ end }}
-    </ul>
-    
-    <a href="{{ "posts/" | relURL }}">All posts →</a>
+    <div class="recent-posts">
+        <h3>Recent Posts</h3>
+        <ul>
+            {{ range first 5 (where .Site.RegularPages "Type" "posts") }}
+                <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span style="color: #6b7280;">// {{ .Date.Format "2006-01-02" }}</span></li>
+            {{ end }}
+        </ul>
+        
+        <p><a href="{{ "posts/" | relURL }}">ls posts/</a></p>
+    </div>
 {{ end }}

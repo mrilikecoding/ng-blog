@@ -2,3 +2,16 @@ baseURL = 'https://mrilikecoding.github.io/ng-blog/'
 languageCode = 'en-us'
 title = 'nate.green'
 theme = 'risotto'
+
+[params]
+noindex = false
+
+[params.theme]
+palette = 'base16-dark'
+
+[params.about]
+title = "nate.green"
+description = "terminal-inspired blog"
+
+[markup.goldmark.renderer]
+unsafe = true
