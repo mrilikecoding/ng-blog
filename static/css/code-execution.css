@@ -5,6 +5,10 @@
   border-radius: 8px;
   background: var(--base01);
   font-family: 'Courier New', monospace;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .code-header {
@@ -83,11 +87,39 @@
   margin-top: -1rem;
   border-top: none;
   border-radius: 0 0 8px 8px;
+  width: 100%;
+  max-width: 100%;
 }
 
 .highlight + .executable-code-block .code-header {
   border-radius: 0;
   background: var(--base02);
+}
+
+/* Fix Hugo code block width issues */
+.highlight {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  box-sizing: border-box !important;
+}
+
+.highlight pre {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 1rem !important;
+}
+
+/* Ensure code blocks don't exceed container */
+.content__body .highlight,
+.content__body pre,
+.content__body code {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  box-sizing: border-box !important;
 }
 
 /* Terminal-style animations */

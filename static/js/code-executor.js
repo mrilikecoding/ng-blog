@@ -14,18 +14,41 @@ class CodeExecutor {
         try {
             // Load Pyodide for Python execution
             const pyodideScript = document.createElement('script');
-            pyodideScript.src = 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js';
+            pyodideScript.src = 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js';
             document.head.appendChild(pyodideScript);
             
             pyodideScript.onload = async () => {
-                this.pyodide = await loadPyodide();
-                this.pyodideReady = true;
-                console.log('Pyodide initialized successfully');
-                this.updatePythonButtons();
+                try {
+                    console.log('Pyodide script loaded, initializing...');
+                    this.pyodide = await loadPyodide({
+                        indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.25.1/full/'
+                    });
+                    this.pyodideReady = true;
+                    console.log('Pyodide initialized successfully');
+                    this.updatePythonButtons();
+                } catch (initError) {
+                    console.error('Pyodide initialization failed:', initError);
+                    this.handlePyodideError();
+                }
+            };
+            
+            pyodideScript.onerror = () => {
+                console.error('Failed to load Pyodide script');
+                this.handlePyodideError();
             };
         } catch (error) {
-            console.error('Failed to initialize Pyodide:', error);
+            console.error('Failed to setup Pyodide:', error);
+            this.handlePyodideError();
         }
+    }
+
+    handlePyodideError() {
+        const pythonButtons = document.querySelectorAll('[data-lang="python"] .run-button, .language-python + .executable-code-block .run-button');
+        pythonButtons.forEach(button => {
+            button.textContent = '❌ Python Failed';
+            button.disabled = true;
+            button.title = 'Python environment failed to load';
+        });
     }
 
     updatePythonButtons() {
@@ -192,13 +215,27 @@ sys.stdout = sys.__stdout__
 document.addEventListener('DOMContentLoaded', () => {
     const executor = new CodeExecutor();
     
-    // Find code blocks marked as executable
-    const executableBlocks = document.querySelectorAll('code[data-executable="true"], .language-javascript, .language-python');
+    // Find code blocks within highlight divs (Hugo's syntax highlighting)
+    const highlightDivs = document.querySelectorAll('.highlight');
     
-    executableBlocks.forEach(block => {
-        // Skip if already processed
+    highlightDivs.forEach(highlightDiv => {
+        const codeElement = highlightDiv.querySelector('code[data-lang]');
+        if (codeElement) {
+            const language = codeElement.getAttribute('data-lang');
+            if (language === 'javascript' || language === 'python') {
+                // Skip if already processed
+                if (highlightDiv.getAttribute('data-processed') === 'true') return;
+                
+                executor.createExecutableCodeBlock(codeElement);
+                highlightDiv.setAttribute('data-processed', 'true');
+            }
+        }
+    });
+    
+    // Also check for standalone code blocks
+    const standaloneCodeBlocks = document.querySelectorAll('code[data-executable="true"]');
+    standaloneCodeBlocks.forEach(block => {
         if (block.getAttribute('data-processed') === 'true') return;
-        
         executor.createExecutableCodeBlock(block);
         block.setAttribute('data-processed', 'true');
     });
