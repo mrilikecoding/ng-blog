@@ -74,11 +74,55 @@ class CodeExecutor {
     }
 
     updatePythonButtons() {
-        const pythonButtons = document.querySelectorAll('[data-lang="python"] .run-button');
+        console.log('Updating Python buttons...');
+        
+        // Find all Python buttons - need to look for buttons associated with Python code blocks
+        const pythonButtons = document.querySelectorAll('.executable-code-block .run-button');
+        
+        let updatedCount = 0;
         pythonButtons.forEach(button => {
-            button.disabled = false;
-            button.textContent = '▶ Run Python';
+            // Check if this button's code block is Python
+            const container = button.closest('.executable-code-block');
+            const languageLabel = container ? container.querySelector('.language-label') : null;
+            
+            if (languageLabel && languageLabel.textContent.toLowerCase() === 'python') {
+                button.disabled = false;
+                button.textContent = '▶ Run Python';
+                updatedCount++;
+                console.log('Updated Python button to ready state');
+            }
         });
+        
+        console.log(`Updated ${updatedCount} Python buttons`);
+        
+        // Also look for any buttons that might have been created later
+        // Set up a mutation observer to catch buttons created after Pyodide loads
+        if (!this.buttonObserver) {
+            this.buttonObserver = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            const newPythonButtons = node.querySelectorAll?.('.executable-code-block .run-button') || [];
+                            newPythonButtons.forEach(button => {
+                                const container = button.closest('.executable-code-block');
+                                const languageLabel = container ? container.querySelector('.language-label') : null;
+                                
+                                if (languageLabel && languageLabel.textContent.toLowerCase() === 'python') {
+                                    button.disabled = false;
+                                    button.textContent = '▶ Run Python';
+                                    console.log('Updated newly created Python button');
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+            
+            this.buttonObserver.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        }
     }
 
     async executeCode(code, language, outputElement) {
@@ -204,9 +248,19 @@ sys.stdout = sys.__stdout__
         
         const runButton = document.createElement('button');
         runButton.className = 'run-button';
-        runButton.textContent = language === 'python' && !this.pyodideReady ? 
-            '⏳ Loading Python...' : `▶ Run ${language}`;
-        runButton.disabled = language === 'python' && !this.pyodideReady;
+        
+        if (language === 'python') {
+            if (this.pyodideReady) {
+                runButton.textContent = '▶ Run Python';
+                runButton.disabled = false;
+            } else {
+                runButton.textContent = '⏳ Loading Python...';
+                runButton.disabled = true;
+            }
+        } else {
+            runButton.textContent = `▶ Run ${language}`;
+            runButton.disabled = false;
+        }
         
         header.appendChild(languageLabel);
         header.appendChild(runButton);
